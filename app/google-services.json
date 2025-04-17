@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "399485324327",
+    "project_id": "spaceflight-79c11",
+    "storage_bucket": "spaceflight-79c11.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399485324327:android:43c2ca43bb15ee3d36d202",
+        "android_client_info": {
+          "package_name": "com.emin.spaceflight"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN0U6isCUiaLDdyNIwz5dWcg1DvUnIBXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
