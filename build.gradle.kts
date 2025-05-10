@@ -18,6 +18,24 @@ plugins {
     alias(libs.plugins.gms) apply (false)
 }
 
+fun Project.collectTasksRecursively(name: String, modules: List<String>): List<Task> {
+    return subprojects
+        .filterNot { it.name in modules }
+        .flatMap { subproject ->
+            listOfNotNull(subproject.tasks.findByName(name)) + subproject.collectTasksRecursively(name, modules)
+        }
+}
+
+val publishAllModules = tasks.register("publishAllModules") {
+    val buildTasks = collectTasksRecursively("assembleRelease", listOf("app"))
+    val publishTasks = collectTasksRecursively(
+        "publishGithubPublicationToGitHubPackagesRepository",
+        listOf("app")
+    )
+    dependsOn(buildTasks)
+    finalizedBy(publishTasks)
+}
+
 dependencies {
     project(":app")
 
@@ -36,6 +54,8 @@ dependencies {
     project(":presentation")
     project(":presentation:basefeature")
     project(":presentation:newsfeature")
+
+    project(":spaceFlightSdk")
 
     project(":testing")
     project(":testing:fake")

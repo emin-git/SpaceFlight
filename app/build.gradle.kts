@@ -51,10 +51,6 @@ android {
         resources.excludes.add("META-INF/LICENSE-notice.md")
     }
     buildTypes {
-        debug {
-            isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("debug")
-        }
         release {
             isMinifyEnabled = true
             applicationVariants.all {
@@ -96,9 +92,10 @@ dependencies {
     project.let {
         navigation(it)
         compose(it)
-        androidX(it)
+        //androidX(it)
         retrofit(it)
         hilt(it)
         apps(it)
     }
+    api(libs.material)
 }

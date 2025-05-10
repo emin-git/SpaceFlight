@@ -10,8 +10,16 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
-        mavenCentral()
+        maven {
+            url = uri("https://maven.pkg.github.com/emin-git/SpaceFlight")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME") ?: ""
+                password = System.getenv("GITHUB_TOKEN") ?: ""
+            }
+        }
         gradlePluginPortal()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
@@ -68,3 +76,4 @@ include(":presentation")
 include(":presentation:basefeature")
 include(":presentation:newsfeature")
 include(":core:ui")
+include(":spaceFlightSdk")

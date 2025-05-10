@@ -2,6 +2,7 @@
 
 plugins {
     alias(libs.plugins.plugin.ui.library)
+    alias(libs.plugins.plugin.hilt)
     id("maven-publish")
 }
 
@@ -10,9 +11,9 @@ afterEvaluate {
         publications {
             create<MavenPublication>("github") {
                 groupId = "com.emingit.spaceflight"
-                artifactId = project.name
+                artifactId = "spaceflight-sdk"
                 version = project.property("VERSION_NAME") as String
-                artifact("build/outputs/aar/${project.name}-release.aar")
+                from(components["release"])
             }
         }
 
@@ -36,28 +37,41 @@ android {
     defaultConfig {
         consumerProguardFiles("consumer-rules.pro")
     }
-    namespace = "com.emin.core.ui"
+    namespace = "com.emin.spaceFlightSdk"
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
-    moduleCoreCommon()
-    api(libs.androidx.appcompat)
-    api(libs.androidx.fragment.ktx)
     project.let {
-        activity(it)
-        lifecycle(it)
-        navigation(it)
-        coil(it)
+        compose(it)
+        hilt(it)
         apps(it)
+        security(it)
     }
-    api(libs.lottie)
+
+    api(project(":core:common"))
+    api(project(":core:database"))
+    api(project(":core:model"))
+    api(project(":core:network"))
+    api(project(":core:utils"))
+
+    api(project(":domain:interactor"))
+    api(project(":domain:repository"))
+    api(project(":domain:usecase"))
+
+    api(project(":presentation:basefeature"))
 }

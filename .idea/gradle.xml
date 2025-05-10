@@ -39,6 +39,7 @@
             <option value="$PROJECT_DIR$/presentation" />
             <option value="$PROJECT_DIR$/presentation/basefeature" />
             <option value="$PROJECT_DIR$/presentation/newsfeature" />
+            <option value="$PROJECT_DIR$/spaceFlightSdk" />
             <option value="$PROJECT_DIR$/testing" />
             <option value="$PROJECT_DIR$/testing/fake" />
             <option value="$PROJECT_DIR$/testing/helper" />

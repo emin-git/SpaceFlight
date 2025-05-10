@@ -23,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.emin.presentation.basefeature.R as BaseR
 
 @Composable
 fun BannerCard(
@@ -95,6 +94,6 @@ fun BannerCard(
 @Composable
 fun BannerCardPreview() {
     BannerCard(
-        "Başlık", "30 kategoride dilediğin filmi izleme fırsatı", BaseR.drawable.bannermovie, modifier = Modifier
+        "Başlık", "30 kategoride dilediğin filmi izleme fırsatı", null, modifier = Modifier
     )
 }
